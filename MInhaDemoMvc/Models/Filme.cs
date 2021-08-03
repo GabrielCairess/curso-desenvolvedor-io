@@ -33,6 +33,6 @@ namespace MInhaDemoMvc.Models
         [Required(ErrorMessage = "O campo avaiação é obrigatório.")]
         [RegularExpression(@"^[0-5]*$", ErrorMessage = "Somente números")]
         [Display(Name = "Avaliação")]
-        public string Avaliacao { get; set; }
+        public int Avaliacao { get; set; }
     }
 }
