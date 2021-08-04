@@ -33,6 +33,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Filmes" asp-action="Adicionar">Filmes</a></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +42,7 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
-        <vc:Carrinho></vc:Carrinho>
+        @*<vc:Carrinho></vc:Carrinho>*@
         @RenderBody()
         <hr />
         <footer>
