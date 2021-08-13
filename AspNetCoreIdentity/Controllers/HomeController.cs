@@ -2,6 +2,7 @@
 using AspNetCoreIdentity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 
 
@@ -23,6 +24,7 @@ namespace AspNetCoreIdentity.Controllers
 
         public IActionResult Privacy()
         {
+            throw new Exception("");
             return View();
         }
 
@@ -32,10 +34,33 @@ namespace AspNetCoreIdentity.Controllers
             return View("Secret");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [Route("erro/{id:length(3,3)}")]
+        public IActionResult Error(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var modelErro = new ErrorViewModel();
+            modelErro.ErrorCode = id;
+
+            if (id == 500)
+            {
+                modelErro.Mensagem = "Ocorreu um erro! Tente novamente mais tarde!";
+                modelErro.Titulo = "Erro de servidor!";
+            }
+            else if (id == 404)
+            {
+                modelErro.Mensagem = "Essa Página não existe";
+                modelErro.Titulo = "Página não encontrada!";
+            }
+            else if (id == 403)
+            {
+                modelErro.Mensagem = "Você não possui permissão para isto!";
+                modelErro.Titulo = "Acesso Negado!";
+            }
+            else
+            {
+                return StatusCode(404);
+            }
+
+            return View("Error", modelErro);
         }
     }
 }
