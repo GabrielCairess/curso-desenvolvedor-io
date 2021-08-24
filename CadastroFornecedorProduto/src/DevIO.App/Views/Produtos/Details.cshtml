@@ -1,14 +1,14 @@
 ﻿@model DevIO.App.ViewModels.ProdutoViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+</div>
 
 <div>
-    <h4>ProdutoViewModel</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id"><span class="fa fa-edit"></span></a>
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
 </div>
