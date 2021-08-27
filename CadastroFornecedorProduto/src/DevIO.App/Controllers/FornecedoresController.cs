@@ -12,11 +12,13 @@ namespace DevIO.App.Controllers
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IMapper _mapper;
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
-            IMapper mapper) : base(mapper)
+            IMapper mapper)
         {
             _fornecedorRepository = fornecedorRepository;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -66,9 +68,9 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-        [HttpPut]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, FornecedorViewModel fornecedorViewModel)
+        public async Task<IActionResult> EditFornecedor(Guid id, FornecedorViewModel fornecedorViewModel)
         {
             if (id != fornecedorViewModel.Id) return View(fornecedorViewModel);
 

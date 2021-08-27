@@ -4,8 +4,6 @@ namespace AppMvcBasica.Models
 {
     public class Produto : Entity
     {
-        public Guid FornecedorId { get; set; }
-
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
@@ -17,6 +15,8 @@ namespace AppMvcBasica.Models
         public DateTime DataCadastro { get; set; }
 
         public bool Ativo { get; set; }
+
+        public Guid FornecedorId { get; set; }
 
         public Fornecedor Fornecedor { get; set; }
     }
