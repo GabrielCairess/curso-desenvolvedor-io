@@ -57,7 +57,8 @@ namespace DevIO.App
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("/erro/{}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();

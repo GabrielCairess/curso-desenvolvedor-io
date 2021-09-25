@@ -41,20 +41,20 @@ namespace DevIO.Business.Services
                 && !ExecutarValidacao(new EnderecoValidation(), fornecedor.Endereco)) return;
 
             if (_fornecedorRepository.Buscar(f => f.Documento == fornecedor.Documento 
-                    && f.Id == fornecedor.Id).Result.Any())
+                    && f.Id != fornecedor.Id).Result.Any())
             {
                 Notificar("Documento já cadastrado!");
                 return;
             }
 
-            await _fornecedorRepository.Adicionar(fornecedor);
+            await _fornecedorRepository.Atualizar(fornecedor);
         }
 
         public async Task AtualizarEndereco(Endereco endereco)
         {
             if (!ExecutarValidacao(new EnderecoValidation(), endereco)) return;
 
-            await _enderecoRepository.Adicionar(endereco);
+            await _enderecoRepository.Atualizar(endereco);
         }
 
         public async Task Remover(Guid id)
