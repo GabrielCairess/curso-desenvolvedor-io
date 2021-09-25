@@ -1,7 +1,6 @@
 ﻿using DevIO.App.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 
 namespace DevIO.App.Controllers
 {
