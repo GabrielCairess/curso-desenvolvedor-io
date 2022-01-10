@@ -34,12 +34,13 @@ namespace DevIO.App
         {
             services.AddIdentityConfiguration(Configuration);
 
-            services.AddDbContext<MeuDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<MeuDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<MeuDbContext>(opt => opt.UseInMemoryDatabase("database"));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
-
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -74,9 +75,7 @@ namespace DevIO.App
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute().RequireAuthorization();
                 endpoints.MapRazorPages();
             });
         }
